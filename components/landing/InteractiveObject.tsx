@@ -8,6 +8,8 @@ interface InteractiveObjectProps {
   id: string;
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
   className?: string;
   style?: React.CSSProperties;
   priority?: boolean;
@@ -18,6 +20,8 @@ export function InteractiveObject({
   id,
   src,
   alt,
+  width,
+  height,
   className = '',
   style = {},
   priority = false,
@@ -63,9 +67,11 @@ export function InteractiveObject({
     <div
       ref={objectRef}
       data-object-id={id}
-      className={`cursor-pointer ${className}`}
+      className={`cursor-pointer relative ${className}`}
       style={{
         ...style,
+        width: width ? `${width}px` : undefined,
+        height: height ? `${height}px` : undefined,
         filter: getFilter(),
         transition: 'filter 0.3s ease',
       }}
