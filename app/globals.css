@@ -1,26 +1,185 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --tzio-orange: #F5821F;
+  --tzio-yellow: #FFD100;
+  --tzio-blue: #1E3A8A;
+  --tzio-red: #DC2626;
+  
+  /* Mercado Atmosphere */
+  --mercado-cream: #FEF3E2;
+  --mercado-dust: #D4C4A8;
+  --mercado-wall: #E8DCC8;
+  --mercado-shadow: #2D1B0E;
+  --mercado-brown: #78350F;
+  
+  /* Supporting */
+  --lime-accent: #84CC16;
+  --rust-patina: #B45309;
+  --canvas-white: #FDFBF7;
+  
+  /* Fonts */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-sign: 'Bebas Neue', sans-serif;
+  
+  /* Easings */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-tzio-orange: var(--tzio-orange);
+  --color-tzio-yellow: var(--tzio-yellow);
+  --color-tzio-blue: var(--tzio-blue);
+  --color-tzio-red: var(--tzio-red);
+  --color-tzio-cream: var(--mercado-cream);
+  --color-tzio-brown: var(--mercado-brown);
+  --color-mercado-dust: var(--mercado-dust);
+  --color-mercado-shadow: var(--mercado-shadow);
+  --color-mercado-wall: var(--mercado-wall);
+  --color-mercado-cream: var(--mercado-cream);
+  --color-canvas-white: var(--canvas-white);
+  --color-lime-accent: var(--lime-accent);
+  --color-rust-patina: var(--rust-patina);
+  
+  /* Fonts */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-sign: var(--font-sign);
+  
+  /* Box Shadows */
+  --shadow-mercado: 4px 4px 0 var(--mercado-shadow);
+  --shadow-mercado-lg: 6px 6px 0 var(--mercado-shadow);
+  --shadow-mercado-hover: 8px 8px 0 var(--mercado-shadow);
+  
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-wiggle: wiggle 0.5s ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0% { filter: drop-shadow(0 0 2px rgba(245, 130, 31, 0.4)); }
+  100% { filter: drop-shadow(0 0 12px rgba(245, 130, 31, 0.8)); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--mercado-wall);
+  color: var(--mercado-shadow);
+  overflow-x: hidden;
+  font-family: var(--font-body);
 }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--mercado-dust);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--tzio-orange);
+  border-radius: 9999px;
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Interactive Objects */
+.interactive-object {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  will-change: transform, filter;
+}
+
+.interactive-object:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(245, 130, 31, 0.5));
+}
+
+/* Mercado Border Style */
+.mercado-border {
+  border: 3px solid var(--mercado-shadow);
+  box-shadow: 4px 4px 0 var(--mercado-shadow);
+}
+
+/* Mercado Card */
+.mercado-card {
+  background-color: var(--mercado-cream);
+  border: 3px solid var(--mercado-shadow);
+  box-shadow: 4px 4px 0 var(--mercado-shadow);
+  padding: 1.5rem;
+  position: relative;
+}
+
+/* Text Shadow */
+.text-shadow-mercado {
+  text-shadow: 2px 2px 0 var(--mercado-shadow);
+}
+
+/* Depth Layers */
+.layer-bg { z-index: 0; }
+.layer-mid { z-index: 10; }
+.layer-front { z-index: 20; }
+.layer-objects { z-index: 30; }
+.layer-ui { z-index: 50; }
+.layer-overlay { z-index: 100; }
+
+/* Button Base */
+.btn-primary {
+  background-color: var(--tzio-orange);
+  color: white;
+  font-family: var(--font-sign);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1em 2em;
+  border: 3px solid var(--mercado-shadow);
+  box-shadow: 4px 4px 0 var(--mercado-shadow);
+  transition: all 0.15s ease;
+}
+
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--mercado-shadow);
+}
+
+/* Hide scrollbar but allow scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
