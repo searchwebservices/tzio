@@ -63,18 +63,21 @@ export function InteractiveObject({
       : 'drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4))';
   };
 
+  // Merge style with width/height props, prioritizing style if it exists
+  const containerStyle: React.CSSProperties = {
+    ...style,
+    width: style.width ?? (width ? `${width}px` : undefined),
+    height: style.height ?? (height ? `${height}px` : undefined),
+    filter: getFilter(),
+    transition: 'filter 0.3s ease',
+  };
+
   return (
     <div
       ref={objectRef}
       data-object-id={id}
       className={`cursor-pointer relative ${className}`}
-      style={{
-        ...style,
-        width: width ? `${width}px` : undefined,
-        height: height ? `${height}px` : undefined,
-        filter: getFilter(),
-        transition: 'filter 0.3s ease',
-      }}
+      style={containerStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -85,6 +88,7 @@ export function InteractiveObject({
         priority={priority}
         className="object-contain pointer-events-none select-none"
         draggable={false}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
     </div>
   );
