@@ -168,6 +168,7 @@ export function MarketStand({ animateIn = false }: MarketStandProps) {
               transform: 'translateX(-50%) perspective(800px) rotateY(-15deg) rotate(2deg) scale(0.8)',
               transformOrigin: 'center center',
               opacity: 0, // Start hidden
+              position: 'absolute',
             }}
           >
             <InteractiveObject
@@ -177,6 +178,7 @@ export function MarketStand({ animateIn = false }: MarketStandProps) {
               style={{
                 width: '100%',
                 height: '100%',
+                position: 'relative',
               }}
               priority
               noShadow
@@ -195,6 +197,7 @@ export function MarketStand({ animateIn = false }: MarketStandProps) {
               height: '19%',
               opacity: 0, // Start hidden
               transform: 'scale(0.8)',
+              position: 'absolute',
             }}
             onClick={() => handleObjectClick('bottle')}
           >
@@ -205,6 +208,7 @@ export function MarketStand({ animateIn = false }: MarketStandProps) {
               style={{
                 width: '100%',
                 height: '100%',
+                position: 'relative',
               }}
             />
           </div>
@@ -221,6 +225,7 @@ export function MarketStand({ animateIn = false }: MarketStandProps) {
               height: '36%',
               opacity: 0, // Start hidden
               transform: 'scale(0.8)',
+              position: 'absolute',
             }}
             onClick={() => handleObjectClick('boombox')}
           >
@@ -231,6 +236,7 @@ export function MarketStand({ animateIn = false }: MarketStandProps) {
               style={{
                 width: '100%',
                 height: '100%',
+                position: 'relative',
               }}
             />
           </div>
